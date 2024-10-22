@@ -4,7 +4,7 @@ from calculadora import calculadora
 class TestCalculadora(unittest.TestCase):
 
     def test_soma(self):
-        self.assertEqual(calculadora("10 + 5"), 15)
+        self.assertEqual(calculadora("10 + 6"), 15)
 
     def test_subtracao(self):
         self.assertEqual(calculadora("10 - 5"), 5)
