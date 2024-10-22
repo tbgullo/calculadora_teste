@@ -1,0 +1,35 @@
+name: Python application
+
+# Disparar o CI em push ou pull requests na branch main
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Fazer checkout do código do repositório
+    - uses: actions/checkout@v2
+
+    # Configurar a versão do Python
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    # Instalar dependências, se houver um requirements.txt
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    # Executar os testes com unittest
+    - name: Run tests
+      run: |
+        python -m unittest discover
